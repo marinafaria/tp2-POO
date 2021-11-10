@@ -26,10 +26,12 @@ Matrix::Matrix(int rows, int cols, double elem) {
 
 // destrutor
 Matrix::~Matrix() {
-    for (int i = 0; i < nRows; i++) {
-        delete this->m[i];
-    }
-    delete this->m;
+    for (int i = 0; i < this->nRows; i++)
+        delete[] this->m[i];
+    delete[] this->m;
+    this->m = NULL;
+    this->nCols = 0;
+    this->nRows = 0;
 }
 
 void Matrix::aloca_matriz() {
@@ -51,14 +53,24 @@ int Matrix::getCols() const {
 
 // retorna uma matriz transposta
 Matrix Matrix::transpose() {
-    Matrix aux(nCols, nRows);
+    Matrix aux(nCols, nRows,0);
     for (int i = 0; i < aux.nRows; i++) {
-        for (int j = 0; j < aux.nCols;j++) {
+        for (int j = 0; j < aux.nCols; j++) {
             aux.m[i][j] = this->m[j][i];
         }
     }
-    cout << aux.m[0][0] << endl;
-    return aux;
+    this->~Matrix();
+    this->nCols = aux.nCols;
+    this->nRows = aux.nRows;
+    this->aloca_matriz();
+    for (int i = 0; i < aux.nRows; i++) {
+        for (int j = 0; j < aux.nCols; j++) {
+            this->m[i][j] = aux.m[i][j];
+        }
+    }
+    aux.~Matrix();
+    
+    return *this;
 }
 
 // imprime o conteudo da matriz
