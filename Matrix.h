@@ -6,7 +6,7 @@
 class Matrix {
 private:
 
-    double** m; // m é um array 2D a ser implementado como um pointer de pointers
+    double** m; // m Ã© um array 2D a ser implementado como um pointer de pointers
     int nRows;  // numero de linhas
     int nCols;  //  numero de colunas
 
@@ -16,7 +16,7 @@ public:
     Matrix();
     Matrix(int rows, int cols, double elem = 0);
     // destrutor
-    ~Matrix();
+ /*   ~Matrix();*/
 
     void aloca_matriz();
 
@@ -27,6 +27,4 @@ public:
     // other methods
     Matrix transpose();
     void print() const;
-
-
 };
