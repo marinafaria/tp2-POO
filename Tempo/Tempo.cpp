@@ -25,15 +25,15 @@ Tempo::~Tempo() {
 
 void Tempo::consist() {
 	while (seg > 59) {
-		seg -= 60;
+		seg -= 59;
 		min += 1;
 	}
 	while (min > 59) {
-		min -= 60;
+		min -= 59;
 		hora += 1;
 	}
 	while (hora > 23) {
-		hora -= 60;
+		hora -= 23;
 		dia += 1;
 	}
 }
